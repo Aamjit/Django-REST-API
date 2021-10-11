@@ -1,0 +1,50 @@
+Django
+
+Django is the most popular free and open source Python Web framework that believes in development of the website on the go. Django provides lots of built in features(such as admin panel, sqlite, model managers, etc.) which helps developers to focus on the core content of their app. Most popular IT companies in the world like Disqus, Instagram, Spotify, Youtube and others used django
+
+
+Anaconda
+
+Anaconda is an open source distribution of the Python and R programming languages developed by  Anaconda, Inc. for scientific computing. Here in this blog, we will going to use conda package manager which manages the package versions in Anaconda. If you have not installed anaconda in your pc yet follow instructions
+
+
+Problems running django with Pip
+
+Pip is the python package manager which already included at the python installer uses in installing packages from the Python Package Index, PyPI. Pip package management processes are hectic as we can’t able to manage packages for particular app in django. It has no built in support for environments so have to depends on tools like virtualenv or venv to create isolated environments.
+
+Alternatively, to solve packages collisions in Pip, conda will be beneficial for package manager which comes along with environment manager. So that we don’t have to depend upon other environments as like Pip.
+
+
+
+Step 1:
+
+Create a new environment named django_env with specific version of python inside your working directory. I am working on my django_project directory inside Desktop folder in Windows computer.
+
+	C:\Users\SHIV\Desktop\django_project> conda create --name django_env python=3.8
+
+activate the newly created Conda environment
+
+	conda activate django_env
+
+install django with other necessary packages.
+
+	conda install -c anaconda django
+
+Create a new Django project called mysite making sure to include the period . at the end of the command so that it is installed in our current directory
+
+	django-admin startproject mysite .
+
+tree /F
+
+run it in local development server.
+
+	python manage.py runserver
+
+conda deactivate - To deactivate current environment
+
+conda list - To see the installed packages list
+
+conda env list - To see the all conda environment lists
+
+conda env remove –n django_env - To remove the just created environment
+

@@ -1,0 +1,60 @@
+API is an acronym for Application Programming Interface that software uses to access data(in web development) that separates back-end from the front-end. Representational State Transfer (REST) is an architectural style for an application program interface (API) first proposed in 2000 by Roy Fielding in his dissertation thesis. It is an approach to building APIs on top of the web, which means on top of the HTTP protocol. Every Restful API are stateless, supports common HTTP verbs (GET, POST, PUT, DELETE, etc.)  and returns data either in JSON or XML formats.
+
+Django is not just the Python Web Development Framework but also the most powerful toolkit for building Web APIs. It is used for making back-end API for large companies like Instagram, Disqus, etc. rather than just a monolithic websites.
+
+In this blog post, we are going to make simple Books API using Django REST Framework package. There are lots of packages in Django for creating APIs but Django REST Framework is the most powerful, flexible, mature, full of features, customizable, testable, and extremely well-documented that transforms any existing Django application into a web API.
+
+
+Creating new app named bookapi
+
+	-django-admin startapp bookapi
+
+add the new app bookapi at the bottom of  INSTALLED_APPS  configuration of our  settings.py  file of our project as
+
+	INSTALLED_APPS = [
+    		...........
+    		...........
+    
+   		 # local apps
+   		 'bookapi.apps.BookapiConfig',
+		]
+
+
+Creating Book model inside the models.py file of bookapi app
+
+bookapi > models.py
+
+
+from django.db import models
+
+
+class Book(models.Model):
+    title = models.CharField(max_length=50)
+    author = models.CharField(max_length=50)
+    description = models.TextField(max_length=500)
+
+    def __str__(self):
+        return self.title
+
+
+
+we create Book model with fields containing title, author and description about a particular book.
+
+Now, migrate changes in the database with the following command as:
+
+	-python manage.py makemigrations bookapi
+
+	-python manage.py migrate
+
+Add the following line of codes in  admin.py  file inside bookapi app
+
+bookapi > admin.py
+
+	from django.contrib import admin
+	from .models import Book
+
+	admin.site.register(Book)
+
+After that create super account and dump some data into the database by log into admin panel as
+
+	-python manage.py createsuperuser
