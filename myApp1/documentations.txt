@@ -58,3 +58,42 @@ bookapi > admin.py
 After that create super account and dump some data into the database by log into admin panel as
 
 	-python manage.py createsuperuser
+
+
+Open the link http://127.0.0.1:8000/admin/ in your browser and upload some data as
+
+Up to now, we just created a project that contains Book model inside app bookapi. We are in the halfway to complete our project. Now we have to use Django Rest Framework as discussed above into our project and converts Book model data into JSON format.
+
+
+installing djangorestframework
+
+	-pipenv install djangorestframework
+	-conda install -c conda-forge djangorestframework
+
+Then, add  rest_framework  to the  INSTALLED_APPS  config as
+
+settings.py
+
+INSTALLED_APPS = [
+    .........
+
+    # third party
+    'rest_framework',
+
+    # local apps
+    'bookapi.apps.BookapiConfig',
+]
+
+
+Creating a new serializers.py file inside bookapi app
+
+bookapi > serializers.py
+
+from rest_framework import serializers
+from .models import Book
+
+
+class BookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ('title', 'author', 'description')
