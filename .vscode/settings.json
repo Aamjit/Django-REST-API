@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "C:\\Users\\Amarjit\\Anaconda3\\envs\\django_env\\python.exe",
+
+    "python.terminal.activateEnvironment": true,
+
+    "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe"
+}

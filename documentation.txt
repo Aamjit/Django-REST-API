@@ -48,3 +48,5 @@ conda env list - To see the all conda environment lists
 
 conda env remove –n django_env - To remove the just created environment
 
+
+
