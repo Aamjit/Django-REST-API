@@ -97,3 +97,39 @@ class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ('title', 'author', 'description')
+
+Above, we import serializers class from rest_framework module and extend it with ModelSerializer to specify our database model Book. We assign the fields like title, author and description to show only that fields when we call API. Overall this serializers.py file converts Book model to JSON format.
+
+
+Creating BookListView and BookDetailView in views.py file of bookapi app as
+
+from rest_framework import generics
+from .models import Book
+from .serializers import BookSerializer
+
+
+class BookListView(generics.ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+
+class BookDetailView(generics.RetrieveAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+We import generics class from rest_framework module that extends ListAPIView in BookListView to displays all books and extends RetrieveAPIView in BookDetailView to display single book.
+
+
+Setting up URL configs for API endpoints
+
+from django.contrib import admin
+from django.urls import path
+from bookapi.views import BookListView, BookDetailView
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', BookListView.as_view()),
+    path('api/<int:pk>/', BookDetailView.as_view()),
+
+]
+
